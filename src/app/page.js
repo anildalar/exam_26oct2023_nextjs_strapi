@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 function Home() {
   //2.1 Hooks area
   const [subjects,setSubjects] = useState([{name:"A"},{name:"B"},{name:"C"},{name:"D"}]);
+//useEffect(cbfn,depArr[])
   useEffect(()=>{
     //let URL = process.env.STRAPI_URL;
    // console.log('Hello',URL);
@@ -23,7 +24,7 @@ function Home() {
     .catch(()=>{})
     .finally(()=>{});
 
-  },[subjects]);
+  },[]);
 
   //2.2 Defination
 
@@ -40,6 +41,17 @@ function Home() {
                   <form>
                    <div className="mb-3">
                       <label htmlFor="exampleInputEmail1" className="form-label fw-bold">Subject</label>
+                      <select className="form-control">
+                        {
+                          subjects.length > 0 &&
+                          subjects.map((cv,idx,arr)=>{
+                            return <option key={idx}>{cv.name}</option>
+                          })
+                        }
+                      </select>
+                    </div>
+                   <div className="mb-3">
+                      <label htmlFor="exampleInputEmail1" className="form-label fw-bold">Subject2</label>
                       <select className="form-control">
                         {
                           subjects.length > 0 &&
